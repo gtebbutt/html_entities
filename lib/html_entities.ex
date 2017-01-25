@@ -21,7 +21,8 @@ defmodule HtmlEntities do
       "&lt;&lt; KAPOW!! &gt;&gt;"
   """
 
-  @external_resource "lib/html_entities_list.txt"
+  @decode_external_resource "lib/html_entities_list_decode.txt"
+  @encode_external_resource "lib/html_entities_list_encode.txt"
 
   @doc "Decode HTML entities in a string."
   @spec decode(String.t) :: String.t
@@ -37,9 +38,9 @@ defmodule HtmlEntities do
     |> Enum.join()
   end
 
-  codes = HtmlEntities.Util.load_entities(@external_resource)
+  decode_codes = HtmlEntities.Util.load_entities(@decode_external_resource)
 
-  for {name, character, codepoint} <- codes do
+  for {name, character, codepoint} <- decode_codes do
     defp replace_entity(_, unquote(name)), do: unquote(character)
     defp replace_entity(_, unquote(codepoint)), do: unquote(character)
   end
@@ -58,10 +59,11 @@ defmodule HtmlEntities do
 
   defp replace_entity(original, _), do: original
 
-  defp replace_character("'"), do: "&apos;"
-  defp replace_character("\""), do: "&quot;"
-  defp replace_character("&"), do: "&amp;"
-  defp replace_character("<"), do: "&lt;"
-  defp replace_character(">"), do: "&gt;"
+  encode_codes = HtmlEntities.Util.load_entities(@encode_external_resource)
+
+  for {name, character, codepoint} <- encode_codes do
+    defp replace_character(unquote(character)), do: unquote("&" <> name <> ";")
+  end
+
   defp replace_character(original), do: original
 end

@@ -18,6 +18,6 @@ defmodule HtmlEntitiesTest do
   end
 
   test "Encoding does replace unsafe characters" do
-    assert encode("'\"&<>") == "&apos;&quot;&amp;&lt;&gt;"
+    assert encode("'\"‘”&<>") == "&apos;&quot;&lsquo;&rdquo;&amp;&lt;&gt;"
   end
 end
