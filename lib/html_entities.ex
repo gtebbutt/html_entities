@@ -61,7 +61,7 @@ defmodule HtmlEntities do
 
   encode_codes = HtmlEntities.Util.load_entities(@encode_external_resource)
 
-  for {name, character, codepoint} <- encode_codes do
+  for {name, character, _} <- encode_codes do
     defp replace_character(unquote(character)), do: unquote("&" <> name <> ";")
   end
 

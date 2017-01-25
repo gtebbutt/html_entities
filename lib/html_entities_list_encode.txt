@@ -14,7 +14,6 @@ copy,©,169
 ordf,ª,170
 laquo,«,171
 not,¬,172
-shy, ,173
 reg,®,174
 macr,¯,175
 deg,°,176
@@ -33,72 +32,6 @@ frac14,¼,188
 frac12,½,189
 frac34,¾,190
 iquest,¿,191
-Agrave,À,192
-Aacute,Á,193
-Acirc,Â,194
-Atilde,Ã,195
-AElig,Æ,198
-Ccedil,Ç,199
-Egrave,È,200
-Eacute,É,201
-Ecirc,Ê,202
-Euml,Ë,203
-Igrave,Ì,204
-Iacute,Í,205
-Icirc,Î,206
-Iuml,Ï,207
-ETH,Ð,208
-Ntilde,Ñ,209
-Ograve,Ò,210
-Oacute,Ó,211
-Ocirc,Ô,212
-Otilde,Õ,213
-times,×,215
-Oslash,Ø,216
-Ugrave,Ù,217
-Uacute,Ú,218
-Ucirc,Û,219
-Uuml,Ü,220
-Yacute,Ý,221
-THORN,Þ,222
-szlig,ß,223
-agrave,à,224
-aacute,á,225
-acirc,â,226
-atilde,ã,227
-aelig,æ,230
-ccedil,ç,231
-egrave,è,232
-eacute,é,233
-ecirc,ê,234
-euml,ë,235
-igrave,ì,236
-iacute,í,237
-icirc,î,238
-iuml,ï,239
-eth,ð,240
-ntilde,ñ,241
-ograve,ò,242
-oacute,ó,243
-ocirc,ô,244
-otilde,õ,245
-divide,÷,247
-oslash,ø,248
-ugrave,ù,249
-uacute,ú,250
-ucirc,û,251
-uuml,ü,252
-yacute,ý,253
-thorn,þ,254
-yuml,ÿ,255
-OElig,Œ,338
-oelig,œ,339
-Scaron,Š,352
-scaron,š,353
-Yuml,Ÿ,376
-fnof,ƒ,402
-circ,ˆ,710
-tilde,˜,732
 Alpha,Α,913
 Beta,Β,914
 Gamma,Γ,915
@@ -151,13 +84,7 @@ omega,ω,969
 thetasym,ϑ,977
 upsih,ϒ,978
 piv,ϖ,982
-ensp, ,8194
-emsp, ,8195
 thinsp, ,8201
-zwnj, ,8204
-zwj, ,8205
-lrm, ,8206
-rlm, ,8207
 ndash,–,8211
 mdash,—,8212
 lsquo,‘,8216
