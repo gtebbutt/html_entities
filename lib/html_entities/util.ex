@@ -14,6 +14,18 @@ defmodule HtmlEntities.Util do
     File.stream!(filename) |> convert_lines_to_entities
   end
 
+  @spec load_json_entities(String.t) :: [entity]
+  def load_json_entities(filename) do
+    File.read!("lib/html_entities_list_decode.txt") |> Poison.Parser.parse!
+      |> Enum.map(fn({k, x}) ->
+          {
+            k |> String.trim_leading("&") |> String.trim_trailing(";"),
+            x["characters"],
+            x["codepoints"] |> List.first
+          }
+         end)
+  end
+
   @doc "Convert a list of comma-separated lines to entity definitions."
   @spec convert_lines_to_entities([String.t] | File.Stream.t) :: [{String.t, String.t, String.t}]
   def convert_lines_to_entities(lines) do

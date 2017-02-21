@@ -21,13 +21,19 @@ defmodule HtmlEntities do
       "&lt;&lt; KAPOW!! &gt;&gt;"
   """
 
-  @decode_external_resource "lib/html_entities_list_decode.txt"
+  @decode_external_resource "lib/html_entities_list_decode.json"
   @encode_external_resource "lib/html_entities_list_encode.txt"
 
   @doc "Decode HTML entities in a string."
   @spec decode(String.t) :: String.t
   def decode(string) do
-    Regex.replace(~r/\&([^\s][0-9][0-9]?[0-9]?[0-9]?)/, string, &replace_entity/2)
+    Regex.replace(~r/\&([^\s]+);/U, string, &replace_entity/2)
+  end
+
+  @doc "Convert HTML entities to XML codepoints."
+  @spec transcode(String.t) :: String.t
+  def transcode(string) do
+    Regex.replace(~r/\&([^\s]+);/U, string, &entity_to_codepoint/2)
   end
 
   @doc "Encode HTML entities in a string."
@@ -38,12 +44,19 @@ defmodule HtmlEntities do
     |> Enum.join()
   end
 
-  decode_codes = HtmlEntities.Util.load_entities(@decode_external_resource)
+  decode_codes = HtmlEntities.Util.load_json_entities(@decode_external_resource)
 
   for {name, character, codepoint} <- decode_codes do
     defp replace_entity(_, unquote(name)), do: unquote(character)
     defp replace_entity(_, unquote(codepoint)), do: unquote(character)
   end
+
+  for {name, _, codepoint} <- decode_codes do
+    defp entity_to_codepoint(_, unquote(name)), do: "&\##{unquote(codepoint)};"
+    defp entity_to_codepoint(_, unquote(codepoint)), do: "&\##{unquote(codepoint)};"
+  end
+
+  defp entity_to_codepoint(_, __), do: ""
 
   defp replace_entity(original, "#x" <> code) do
     try do
