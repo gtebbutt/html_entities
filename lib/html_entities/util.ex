@@ -16,7 +16,7 @@ defmodule HtmlEntities.Util do
 
   @spec load_json_entities(String.t) :: [entity]
   def load_json_entities(filename) do
-    File.read!("lib/html_entities_list_decode.txt") |> Poison.Parser.parse!
+    File.read!(filename) |> Poison.Parser.parse!
       |> Enum.map(fn({k, x}) ->
           {
             k |> String.trim_leading("&") |> String.trim_trailing(";"),
